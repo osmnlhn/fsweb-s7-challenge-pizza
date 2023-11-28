@@ -1,11 +1,13 @@
 import React from "react";
-
+import { Route, Routes } from "react-router-dom";
+import HomePage from './components/HomePage';
 const App = () => {
   return (
-    <>
-      <h1>Teknolojik Yemekler</h1>
-      <p>Burdaki kodu silip kendi headerınızı ekleyebilirsiniz</p>
-    </>
+    <div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </div>
   );
 };
 export default App;

@@ -1,0 +1,62 @@
+.anasayfa-Container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    background-color: #ce2829;
+    background-image: url('../assets/mvp-banner.png');
+   
+    height: 90vh;
+  }
+
+  .header-anasayfa > h2 {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 100;
+    color: white;
+  }
+  .header-anasayfa > h4 {
+    padding-top: 1rem;
+    font-family: 'Satisfy', cursive;
+    color: #fdc913;
+  }
+  #order-pizza {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: #292929;
+    border-radius: 5rem;
+    width: 10rem;
+    background-color: #fdc913;
+    border: 0.15rem white solid;
+    padding: 1rem 2rem;
+    margin: 3vh 0 30vh 0;
+  }
+  
+  .main-banner {
+    max-width: 50vw;
+    max-height: 50vh;
+  }
+
+ .header-anasayfa > nav {
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10vh;
+    background-color: #ce2829;
+    
+  }
+
+  */
+
+  @media only screen and (max-width: 800px) {
+    img {
+      width: 50%;
+    }
+  }
