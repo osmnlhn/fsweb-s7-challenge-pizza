@@ -7,11 +7,11 @@ import {
     NavLink,
     
   } from "reactstrap";
-const OrderPage = ({siparis}) => {
+const OrderPage = ({siparisDetail}) => {
   const [sipariss, setSipariss] = useState();
 
   
-  siparis(sipariss);
+  siparisDetail(sipariss);
 
   
   return (
@@ -36,7 +36,7 @@ const OrderPage = ({siparis}) => {
           </NavItem>
         </Nav>
       </div>
-      <Order siparisss={setSipariss} />
+      <Order setSipariss={setSipariss} />
     </div>
   );
 };

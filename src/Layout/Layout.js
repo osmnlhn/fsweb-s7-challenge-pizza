@@ -9,8 +9,6 @@ const Layout = () => {
   const[siparis,setSiparis] = useState();
   const siparisDetail = (e) => {
     setSiparis(e);
-
-    
   }
 
   return (
@@ -19,10 +17,8 @@ const Layout = () => {
       <div className="page-content">
         <Routes>
           <Route path="/" element={<MainPage />}/>
-          <Route path="/order-pizza" element={<OrderPage siparis={siparisDetail} />}/>
+          <Route path="/order-pizza" element={<OrderPage siparisDetail={siparisDetail} />}/>
           <Route path="/pizza" element={<OrderSuccesPage siparis={siparis}/>}/>
-         
-
         </Routes>
       </div>
     </div>

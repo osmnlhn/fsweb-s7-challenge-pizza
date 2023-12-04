@@ -14,10 +14,7 @@ const Counter = (props) => {
   props.counter(count);
 
   return (
-    <div style={{
-      width: "9rem",
-      height: "3rem",
-    }}>
+    <div>
       <Button className="" color="warning" onClick={azalt}
       style={{
         width: "3rem",
@@ -27,7 +24,6 @@ const Counter = (props) => {
       </Button>
       <p style={{
         width: "3rem",
-        height: "3rem",
         textAlign: "center"
       }}>{count}</p>
       <Button className="" color="warning" onClick={arttir}

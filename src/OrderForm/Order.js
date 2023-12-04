@@ -65,7 +65,7 @@ const Order = (props) => {
     ekMalzemeler: "",
     sugest: "",
     currency: "",
-    
+
   });
   const [formErrors, setFormErrors] = useState({
     id: "",
@@ -104,14 +104,14 @@ const Order = (props) => {
   const [disableButton, setDisableButton] = useState(true);
   const perCost = 5;
   const navigate = useNavigate();
- 
+
   const orderFormSchema = Yup.object().shape({
     boyut: Yup.string().required("Pizza boyutunu seçmek zorunlu"),
     hamur: Yup.string().required("Pizza hamurunu seçmek zorunlu"),
     ekMalzemeler: Yup.
-      array().required().max(10,"En Fazla 10 seçim"),
+      array().required().max(10, "En Fazla 10 seçim"),
     text: Yup.string().required("Sipariş notu girin"),
-    name:Yup.string().required("Pizza seçimi yapmak zorunlu")
+    name: Yup.string().required("Pizza seçimi yapmak zorunlu")
   });
 
   const selectPizza = (e) => {
@@ -131,10 +131,10 @@ const Order = (props) => {
       .catch((err) => {
         setFormErrors({ ...formErrors, [e.target.name]: err.errors[0] });
       });
-    
+
   };
-  
-  
+
+
   const setCheck = (e) => {
     setOrderPizza({ ...orderPizza, [e.target.name]: e.target.checked });
 
@@ -145,13 +145,14 @@ const Order = (props) => {
     } else {
       setMalzemeSayaci(malzemeSayaci - 1);
       setTotalPrice(totalPrice - perCost);
-      
+
       let deleteEkMalzemeler = ekMalzemeler.filter(item => item !== e.target.name);
       setEkMalzemeler(deleteEkMalzemeler);
     }
   };
   const changeHandler = (e) => {
-    setOrderPizza({ ...orderPizza, [e.target.name]: e.target.value });   
+    setOrderPizza({ ...orderPizza, [e.target.name]: e.target.value });
+    console.log(orderPizza);
     Yup.reach(orderFormSchema, e.target.name)
       .validate(e.target.value)
       .then((valid) => {
@@ -164,9 +165,9 @@ const Order = (props) => {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    props.siparisss(orderPizza);
+    props.setSipariss(orderPizza);
     axios
-      .post("https://75e9o.mocklab.io/json/1", orderPizza)
+      .post("https://reqres.in/api/users", orderPizza)
       .then((response) => {
         navigate("/pizza");
       });
@@ -175,12 +176,12 @@ const Order = (props) => {
   useEffect(() => {
     console.log("ekMalzemeler", ekMalzemeler);
   }, [ekMalzemeler]);
-  
+
 
 
   useEffect(() => {
     console.log(">>>>>>>>>>>>>", orderPizza);
-    orderFormSchema.isValid(orderPizza).then((valid) => setDisableButton(!valid)); 
+    orderFormSchema.isValid(orderPizza).then((valid) => setDisableButton(!valid));
   }, [orderPizza]);
 
   useEffect(() => {
@@ -203,7 +204,7 @@ const Order = (props) => {
 
   return (
     <div>
-      <div className="body"> 
+      <div className="body">
         {pizza.map((e, index) => {
           return (
             <Card className="card-item"
@@ -218,7 +219,7 @@ const Order = (props) => {
                 <CardTitle tag="h5">
                   {e.name}
                 </CardTitle>
-                <CardSubtitle  tag="h6">
+                <CardSubtitle tag="h6">
                   {e.price} TL
                 </CardSubtitle>
                 <CardText >{e.sugest}</CardText>
@@ -229,7 +230,7 @@ const Order = (props) => {
                   type="button"
                   name={e.name}
                   onClick={selectPizza}
-                  
+
                 >
                   SEÇ
                 </Button>
@@ -265,7 +266,7 @@ const Order = (props) => {
                   id="size-dropdown"
                   value="Küçük"
                   onChange={changeHandler}
-                
+
                 />{" "}
                 <Label check htmlFor="size-dropdown">Küçük Boy</Label>
               </FormGroup>
@@ -276,7 +277,7 @@ const Order = (props) => {
                   id="size-dropdown"
                   value="Orta"
                   onChange={changeHandler}
-                  data-cy = "radio2"
+                  data-cy="radio2"
                 />{" "}
                 <Label check htmlFor="size-dropdown">Orta Boy</Label>
               </FormGroup>
@@ -287,15 +288,15 @@ const Order = (props) => {
                   id="size-dropdown"
                   value="Büyük"
                   onChange={changeHandler}
-                  data-cy = "radio3"
+                  data-cy="radio3"
                 />{" "}
                 <Label check htmlFor="size-dropdown">Büyük Boy</Label>
               </FormGroup>
               <FormFeedback >{formErrors.boyut}</FormFeedback>
             </FormGroup>
-            </FormGroup>
+          </FormGroup>
 
-            <FormGroup>
+          <FormGroup>
             <UncontrolledDropdown
 
               style={{ width: "50%" }}
@@ -303,10 +304,8 @@ const Order = (props) => {
               <DropdownToggle caret color="light">
                 <strong>Hamur Seç</strong>
               </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem header id="hamur-type">
-
-                </DropdownItem>
+              <DropdownMenu style={{position: "absolute"}}>
+                {/* <DropdownItem header id="hamur-type"></DropdownItem> */}
                 <DropdownItem
                   name="hamur"
                   value="İnce"
@@ -333,19 +332,19 @@ const Order = (props) => {
                 </DropdownItem>
               </DropdownMenu>
               <div>
-              <p>
-              <strong>Hamur:{orderPizza.hamur}</strong>
-              </p>
+                <p style={{marginTop: "2rem"}}>
+                  <strong>Hamur:{orderPizza.hamur}</strong>
+                </p>
               </div>
             </UncontrolledDropdown>
-            </FormGroup>
-            
-          
+          </FormGroup>
+
+
 
           <FormGroup >
             <h4>Ek Malzemeler:</h4>
             <p>En az 4 malzeme seçiniz. <strong>5TL</strong> </p>
-         
+
             <FormFeedback >{formErrors.ekMalzemeler}</FormFeedback>
 
             {malzemeler.map((e, index) => {
@@ -357,7 +356,7 @@ const Order = (props) => {
                     key={index}
                     onChange={setCheck}
                     data-cy-checkbox={index}
-                    
+
                   />
                   <Label check>{e}</Label>
                 </FormGroup>
@@ -377,13 +376,13 @@ const Order = (props) => {
             />
             <FormFeedback>{formErrors.text}</FormFeedback>
           </FormGroup>
-<br/>
+          <br />
           <FormGroup >
             <Counter counter={setCounter} />
 
             <Card
               body
-            
+
               style={{
                 width: "5rem",
               }}
@@ -395,7 +394,7 @@ const Order = (props) => {
                 <span>Toplam: {lastPrice} TL </span>
               </CardText>
               <Button id="order-button" type="submit" color="warning" disabled={disableButton}
-             >
+              >
                 SİPARİŞ VER
               </Button>
             </Card>

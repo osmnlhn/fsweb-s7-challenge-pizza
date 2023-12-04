@@ -16,7 +16,7 @@ const OrderSuccesPage = ({ siparis }) => {
   });
   console.log("sucseeses", siparis);
   axios
-    .get("https://75e9o.mocklab.io/json/1")
+    .get("https://reqres.in/api/users")
     .then((res) => {
       if (siparis != null) {
         setLastSiparis(siparis);
