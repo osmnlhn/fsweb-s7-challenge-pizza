@@ -7,9 +7,8 @@
 
     text-decoration: none;
     background-color: #ce2829;
-    background-image: url('../assets/mvp-banner.png');
-   
-    height: 90vh;
+    background-image: url('../assets/esnek-form-banner.png');
+    height: 100vh;
   }
 
   .header-anasayfa > h2 {
@@ -26,7 +25,7 @@
     display: flex;
     justify-content: center;
     text-decoration: none;
-    color: #292929;
+    color: #9c1414;
     border-radius: 5rem;
     width: 10rem;
     background-color: #fdc913;

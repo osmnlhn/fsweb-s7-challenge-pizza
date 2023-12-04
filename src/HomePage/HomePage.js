@@ -19,7 +19,7 @@ function HomePage () {
         <h2>KOD ACIKTIRIR.</h2>
         <h2>PİZZA, DOYURUR.</h2>
     </div>
-    <Link id="order-pizza" to="/" data-cy="order-pizza">
+    <Link id="order-pizza" to="/order-pizza" >
         TIKLA GELSIN
     </Link>
     <br></br>
